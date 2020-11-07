@@ -1,0 +1,76 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Properties API",
+    "description": "Properties API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Properties",
+      "description": "API for the properties"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/properties": {
+      "get": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Get all the properties",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Properties"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Property": {
+      "required": [
+        "property_id",
+        "title",
+        "vicinity",
+        "lat_lon"
+      ],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "latlon": {
+          "type": "string"
+        }
+      }
+    },
+    "Properties": {
+      "type": "array",
+      "$ref": "#/definitions/Property"
+    }
+  }
+}
