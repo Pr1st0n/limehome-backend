@@ -47,7 +47,7 @@ Environmental variables defined in *./.env* are used to in configure API.
 |-----------------|-----------------|-------------------------------|
 |PORT             |3000             |API port                       |
 |SECRET           |dummyauth        |API token to authorize requests|
-|POSTGRES_HOST    |limehoem-database|Database host                  |
+|POSTGRES_HOST    |limehme-database|Database host                  |
 |POSTGRES_PORT    |5432             |Database port                  |
 |POSTGRES_DB      |limehome_api     |Database name                  |
 |POSTGRES_USER    |postgres         |Database user                  |
