@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "749d5577-5e8b-42c4-a7cf-fae85b1be4be",
+		"name": "Limehome API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Properties Nearby",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dummyauth",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/property?at=48,11",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"property"
+					],
+					"query": [
+						{
+							"key": "at",
+							"value": "48,11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Property Bookings",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dummyauth",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/property/1/bookings",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"property",
+						"1",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Property Booking",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dummyauth",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer\": \"Jennifer Doe\",\n    \"arrival_date\": \"2020-10-09T22:00:00.000Z\",\n    \"departure_date\": \"2020-10-11T22:00:00.000Z\",\n    \"price\": \"$100.00\",\n    \"guests\": 1,\n    \"property_id\": 1 \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/booking",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1444c31a-2f20-4a24-8da7-f6cb2bee2f09",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "eca74d19-2279-4cc0-bbf2-c231acebb354",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

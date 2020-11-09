@@ -15,6 +15,10 @@ Usage of PostGis as a database allows storing property coordinates and performin
 
 Make sure to authorize request to API using *x-api-key* header with the value of *$SECRET* defined in *./.env*
 
+Import Postman Collection to interact with local API instance
+
+*infrastructure/app/Limehome API.postman_collection.json*
+
 ## Requirements
 
 - Docker and Docker Compose installed;

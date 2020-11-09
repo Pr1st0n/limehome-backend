@@ -74,14 +74,16 @@
     },
     "/api/bookings": {
       "put": {
-        "parameters": [{
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "schema": {
-            "$ref": "#/definitions/Booking"
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
           }
-        }],
+        ],
         "tags": [
           "Booking"
         ],

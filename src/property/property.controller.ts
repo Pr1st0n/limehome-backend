@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import Controller from '../interfaces/controller';
 import Property from './property.entity';
 import Booking from '../booking/booking.entity';
+import { HttpException } from '../exceptions/http';
 
 class PropertyController implements Controller {
     public path = '/property';
@@ -23,12 +24,17 @@ class PropertyController implements Controller {
 
     private getProperty = async (req: Request, res: Response, next: NextFunction) => {
         if (!req.query.at) {
-            res.status(400);
-            next(new Error('Required query params missing'));
+            next(new HttpException(400, 'Required query param is missing'));
             return;
         }
 
         const [lat, lon] = (req.query.at as string).split(',');
+
+        if (Math.abs(parseInt(lat)) > 90 || Math.abs(parseInt(lon)) > 180) {
+            next(new HttpException(400, 'Required query param is invalid'));
+            return;
+        }
+
         const query = 'ST_Distance(lat_lon, ST_MakePoint(:lon,:lat)) <= :dist * 1000';
         const properties = await this.propertyRepository
             .createQueryBuilder('property')
