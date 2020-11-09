@@ -42,9 +42,8 @@ class App {
         controllers.forEach((controller) => {
             this.app.use(controller.path, controller.router);
         });
-        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 }
-const app = express();
 
 export default App;
