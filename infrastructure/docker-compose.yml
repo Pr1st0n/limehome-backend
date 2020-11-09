@@ -1,5 +1,15 @@
 version: '3'
 services:
+  limehome-api:
+    container_name: limehome-api
+    build:
+      context: ../
+      dockerfile: ./infrastructure/app/Dockerfile
+    networks:
+      limehome:
+    ports:
+      - 3000:3000
+
   limehome-database:
     container_name: limehome-database
     build:

@@ -7,7 +7,7 @@ import CreateBookingDto from './booking.dto';
 import validationMiddleware from '../middleware/validate';
 
 class BookingController implements Controller {
-    public path = '/booking';
+    public path = '/bookings';
     public router = express.Router();
     private bookingRepository = getRepository(Booking);
 
