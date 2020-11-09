@@ -29,7 +29,7 @@ class App {
 
     private initializeMiddlewares() {
         this.app.use(logger('dev'));
-        this.app.use(authMiddleware);
+        this.app.use('/api', authMiddleware);
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
     }
@@ -40,9 +40,10 @@ class App {
 
     private initializeControllers(controllers: Controller[]) {
         controllers.forEach((controller) => {
-            this.app.use(controller.path, controller.router);
+            this.app.use('/api' + controller.path, controller.router);
         });
-        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        const opts = { swaggerOptions: { defaultModelsExpandDepth: -1 } };
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, opts));
     }
 }
 

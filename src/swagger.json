@@ -2,21 +2,15 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Properties API",
-    "description": "Properties API",
+    "title": "Limehome API",
+    "description": "Limehome API",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
   "host": "localhost:3000",
-  "basePath": "/",
-  "tags": [
-    {
-      "name": "Properties",
-      "description": "API for the properties"
-    }
-  ],
+  "basePath": "/api",
   "schemes": [
     "http"
   ],
@@ -27,8 +21,17 @@
     "application/json"
   ],
   "paths": {
-    "/properties": {
+    "/api/property": {
       "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "at",
+            "type": "string",
+            "required": true,
+            "description": "Comma separated point coordinates (Latitude and Longitude)"
+          }
+        ],
         "tags": [
           "Property"
         ],
@@ -38,6 +41,56 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Properties"
+            }
+          }
+        }
+      }
+    },
+    "/api/property/{id}/bookings": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "type": "integer",
+            "name": "id",
+            "minimum": 1,
+            "required": true,
+            "description": "Property ID"
+          }
+        ],
+        "tags": [
+          "Property"
+        ],
+        "summary": "Get all the bookings of the properties",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Bookings"
+            }
+          }
+        }
+      }
+    },
+    "/api/bookings": {
+      "put": {
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Booking"
+          }
+        }],
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Create booking of the property",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Booking"
             }
           }
         }
@@ -53,17 +106,17 @@
         "lat_lon"
       ],
       "properties": {
-        "_id": {
+        "property_id": {
           "type": "integer",
           "uniqueItems": true
         },
         "title": {
           "type": "string"
         },
-        "address": {
+        "vicinity": {
           "type": "string"
         },
-        "latlon": {
+        "lat_lon": {
           "type": "string"
         }
       }
@@ -71,6 +124,44 @@
     "Properties": {
       "type": "array",
       "$ref": "#/definitions/Property"
+    },
+    "Booking": {
+      "required": [
+        "booking_id",
+        "property_id",
+        "customer",
+        "arrival_date",
+        "departure_date",
+        "price",
+        "guests"
+      ],
+      "properties": {
+        "booking_id": {
+          "type": "number"
+        },
+        "property_id": {
+          "type": "number"
+        },
+        "customer": {
+          "type": "string"
+        },
+        "arrival_date": {
+          "type": "string"
+        },
+        "departure_date": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "guests": {
+          "type": "number"
+        }
+      }
+    },
+    "Bookings": {
+      "type": "array",
+      "$ref": "#/definitions/Booking"
     }
   }
 }

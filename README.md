@@ -9,9 +9,11 @@ Usage of PostGis as a database allows storing property coordinates and performin
 |/api/properties?at=LAT,LONG |Returns the property around Lat/Lon*|
 |/api/bookings               |Creates a booking for a property    |
 |/api/properties/:id/bookings|Returns the bookings for a property |
-|/api/api-docs                       |API documentation                   |
+|/api-docs                   |API documentation                   |
 
 **Default area radius is 500km around given point*
+
+Make sure to authorize request to API using *x-api-key* header with the value of *$SECRET* defined in *./.env*
 
 ## Requirements
 
