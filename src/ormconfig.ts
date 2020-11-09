@@ -1,5 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 
+const entities = process.env.TS_NODE ? 'src/**/*.entity.ts' : 'build/**/*.entity.js';
 const config: ConnectionOptions = {
     type: 'postgres',
     host: process.env.POSTGRES_HOST,
@@ -7,15 +8,7 @@ const config: ConnectionOptions = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    entities: [
-        __dirname + '/../**/*.entity{.ts,.js}',
-    ],
-    migrations: [
-        'src/migrations/*.ts',
-    ],
-    cli: {
-        migrationsDir: 'src/migrations',
-    },
+    entities: [entities]
 };
 
 export = config;
